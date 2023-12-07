@@ -1,0 +1,31 @@
+{
+  "name": "resto-charity",
+  "version": "1.0.0",
+  "description": "Projet fin de module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "MehrElyes",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "git": "^0.1.5",
+    "http": "^0.0.1-security",
+    "mongoose": "^8.0.2",
+    "socket.io": "^4.7.2",
+    "twig": "^1.17.1",
+    "validator": "^13.11.0",
+    "yup": "^1.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elyesmehri/Resto-Charity.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elyesmehri/Resto-Charity/issues"
+  },
+  "homepage": "https://github.com/elyesmehri/Resto-Charity#readme"
+}

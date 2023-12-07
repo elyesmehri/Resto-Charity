@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <a href="/"></a>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        #userForm {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 20 px 20px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: ##45a04;
+        }
+
+        .clicked {
+            background-color: #4caf50;
+        }
+
+        .clicked2 {
+            background-color: #4caf50;
+        }
+
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>User Registration</h1>
+    </header>
+
+    <form id="userForm">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required>
+
+        <label for="prenom">Prenom:</label>
+        <input type="text" id="prenom" name="prenom" required>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="adresse">Adresse:</label>
+        <textarea id="adresse" name="adresse" required></textarea>
+
+        <label for="numero_tel">Numero de Telephone:</label>
+        <input type="tel" id="numero_tel" name="numero_tel" required>
+
+        <label for="mot_de_passe">Password:</label>
+        <input type="password" id="mot_de_passe" name="mot_de_passe" required>
+
+        <button type="button" id="submitButton" onclick="submitForm()">Submit</button>
+        <p>Already have an account? <a href="/signin" onclick="signinButton()">Sign In</a></p>
+    
+    </form>
+
+    <script>
+        const socket = io.connect();
+
+        socket.on('connect', () => {
+            console.log('Connected to server');
+        });
+
+        socket.on('disconnect', () => {
+            console.log('Disconnected from server');
+        });
+
+        function submitForm() {
+          
+            document.getElementById("submitButton").classList.add("clicked");
+
+            const inscri = {
+
+                nom: nom.value,
+                prenom: prenom.value,
+                date: date.value,
+                adresse: adresse.value,
+                numero_tel: numero_tel.value,
+                mot_de_passe: mot_de_passe.value,
+            };
+
+            socket.emit("inscri", inscri);
+
+            window.location.href = "/signin"; // Change "/signin" to the actual URL of your sign-in page
+        }
+
+         function signinForm() {
+
+            document.getElementById("signinButton").classList.add("clicked2");
+
+            window.location.href = "/signin"; // Change "/signin" to the actual URL of your sign-in page
+         }
+
+    </script>
+
+</body>
+
+</html>

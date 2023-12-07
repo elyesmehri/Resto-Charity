@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <a href="/"></a>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        #userForm {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 90%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .clicked {
+            background-color: #A00000;
+        }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+
+    <nav>
+        <a href="/signin"></a>
+    </nav>
+
+    <header>
+        <h1>Client Login</h1>
+    </header>
+
+    <form id="signinForm">
+
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required>
+
+        <label for="mot_de_passe">Password:</label>
+        <input type="password" id="mot_de_passe" name="mot_de_passe" required>
+
+        <button type="button" id="signinButton" onclick="signinForm()">SIGN IN</button>
+    </form>
+
+    <script>
+        const socket = io.connect();
+
+        socket.on('connect', () => {
+            console.log('Connected to server');
+        });
+
+        socket.on('disconnect', () => {
+            console.log('Disconnected from server');
+        });
+
+        function signinForm() {
+
+            document.getElementById("signinButton").classList.add("clicked");
+
+            const signin = {
+                            nom: nom.value,
+                            mot_de_passe: mot_de_passe.value,
+            };
+
+            socket.emit("signin", signin);
+        }
+ 
+    </script>
+
+</body>
+
+</html>
